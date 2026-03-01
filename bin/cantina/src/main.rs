@@ -1,4 +1,8 @@
 use clap::{Parser, Subcommand};
+use tokio;
+
+mod errors;
+mod install;
 
 #[derive(Parser)]
 #[command(name = "cantina")]
@@ -13,13 +17,11 @@ enum Commands {
     Install { name: String },
 }
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Install { name } => {
-            println!("Installing task: {}", name);
-        }
-    }
+        Commands::Install { name } => install::install(name).await,
+    };
 }
-
