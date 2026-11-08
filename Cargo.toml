@@ -1,7 +1,7 @@
 [workspace]
 members = [
   "bin/cantina",
-  # "lib/*"
+  "lib/*"
 ]
 resolver = "2"
 
